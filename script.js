@@ -16,7 +16,6 @@ function createBoxes(rowDiv, size) {
         box.setAttribute('class', 'box');
         rowDiv.appendChild(box)
         box.addEventListener('mouseover', changeBackgroundColor)
-        console.log(box.getAttribute('background-color'));
     }
 }
 
@@ -24,8 +23,24 @@ function changeBackgroundColor(event) {
     let boxColor = event.target.style.backgroundColor;
     if (boxColor === '') {
         const hue = getRandomHue();
-        event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+        event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%, 0)`;
+    } else {
+        event.target.style.backgroundColor = addOpacity(boxColor);
     }
+}
+
+function addOpacity(color) {
+    const getOpacity = /(\d\.?\d?)\)/;
+    const opacity = getOpacity.exec(color)[1];
+
+    if (color.slice(0, 4) === 'rgb(') {
+        return;
+    }
+
+    const newOpacity = (+opacity + 0.1).toFixed(1);
+    const newColor = color.replace(getOpacity, `${newOpacity})`);
+
+    return newColor;
 }
 
 function getRandomHue() {
