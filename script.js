@@ -1,5 +1,6 @@
 const container = document.querySelector('.container');
-let previousGridSize = 16;
+const INITIAL_SIZE = 16;
+let previousGridSize = INITIAL_SIZE;
 
 function createGrid(size) {
     for (let i = 0; i < size; i++) {
@@ -86,6 +87,6 @@ function removeOldGrid() {
     })
 }
 
-createGrid(16);
+createGrid(INITIAL_SIZE);
 
 listenToButton();
