@@ -15,11 +15,26 @@ function createBoxes(rowDiv, size) {
         const box = document.createElement('div');
         box.setAttribute('class', 'box');
         rowDiv.appendChild(box)
-        box.addEventListener('mouseover', (event) => {
-            event.target.style.backgroundColor = 'blue';
-        })
+        box.addEventListener('mouseover', changeBackgroundColor)
+        console.log(box.getAttribute('background-color'));
     }
 }
+
+function changeBackgroundColor(event) {
+    let boxColor = event.target.style.backgroundColor;
+    if (boxColor === '') {
+        const hue = getRandomHue();
+        event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
+    }
+}
+
+function getRandomHue() {
+    const min = Math.ceil(0);
+    const max = Math.floor(360);
+    const hue = (Math.random() * (max - min + 1)) + min; 
+    return Math.round(hue);
+}
+
 
 function listenToButton() {
     const button = document.querySelector('button')
