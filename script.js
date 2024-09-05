@@ -20,4 +20,27 @@ function createBoxes(rowDiv) {
     }
 }
 
+function listenToButton() {
+    const button = document.querySelector('button')
+    button.addEventListener('click', promptForNewSize);
+}
+
+function promptForNewSize() {
+    let newGridSize;
+    let firstPrompt = true;
+
+    do {
+        if (firstPrompt) {
+            newGridSize = prompt('Enter a grid size');
+            firstPrompt = false;
+        } else {
+            newGridSize = prompt('You can only enter a grid size with range of 0-100');
+        }
+        
+    } while (newGridSize < 0 || newGridSize > 100)
+}
+
+
 createRow();
+
+listenToButton();
