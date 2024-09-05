@@ -54,7 +54,18 @@ function getRandomHue() {
 
 function listenToButton() {
     const button = document.querySelector('button')
-    button.addEventListener('click', promptForNewSize);
+    button.addEventListener('click', createNewGrid);
+}
+
+function createNewGrid() {
+    const newGridSize = promptForNewSize();
+    if (newGridSize === previousGridSize) {
+        return;
+    }
+
+    previousGridSize = newGridSize;
+    removeOldGrid();
+    createGrid(newGridSize);
 }
 
 function promptForNewSize() {
@@ -71,13 +82,14 @@ function promptForNewSize() {
         
     } while (newGridSize <= 0 || newGridSize > 100)
 
-    if (previousGridSize === newGridSize) {
-        return;
-    }
+    return newGridSize;
+    // if (previousGridSize === newGridSize) {
+    //     return;
+    // }
 
-    previousGridSize = newGridSize;
-    removeOldGrid();
-    createGrid(newGridSize);
+    // previousGridSize = newGridSize;
+    // removeOldGrid();
+    // createGrid(newGridSize);
 }
 
 function removeOldGrid() {
