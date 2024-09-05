@@ -14,6 +14,9 @@ function createBoxes(rowDiv) {
         const box = document.createElement('div');
         box.setAttribute('class', 'box');
         rowDiv.appendChild(box)
+        box.addEventListener('mouseover', (event) => {
+            event.target.style.backgroundColor = 'blue';
+        })
     }
 }
 
