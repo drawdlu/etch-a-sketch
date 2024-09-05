@@ -73,7 +73,8 @@ function promptForNewSize() {
     if (previousGridSize === newGridSize) {
         return;
     }
-    
+
+    previousGridSize = newGridSize;
     removeOldGrid();
     createGrid(newGridSize);
 }
